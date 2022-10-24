@@ -6,6 +6,6 @@
 
         public string Exame { get; set; }
 
-        public 
+        public string Sala { get; set; }
     }
 }
