@@ -10,5 +10,8 @@ namespace api_csharp.Data
         {
         }
         public DbSet<Contato> Contatos { get; set; }
+
+        public DbSet<Worklist> Worklist { get; set; }
+
     }
 }

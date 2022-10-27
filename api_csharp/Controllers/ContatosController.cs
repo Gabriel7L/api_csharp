@@ -28,7 +28,6 @@ namespace api_csharp.Controllers
         {
             var contato = new Contato()
             {
-                Id = Guid.NewGuid(),
                 Endereco = addRequest.Endereco,
                 Nome = addRequest.Nome,
                 Telefone = addRequest.Telefone,
@@ -53,6 +52,15 @@ namespace api_csharp.Controllers
 
             }
             return NotFound();
+        }
+
+        [HttpPost]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> GetContato([FromRoute] Guid id)
+        {
+            var result = await dbContext.Contatos.FindAsync(id);
+            return Ok(result);
+
         }
 
     }

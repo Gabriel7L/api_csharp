@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using api_csharp.Data;
@@ -11,9 +12,10 @@ using api_csharp.Data;
 namespace api_csharp.Migrations
 {
     [DbContext(typeof(DbContextAPI))]
-    partial class DbContextAPIModelSnapshot : ModelSnapshot
+    [Migration("20221027204303_Att1")]
+    partial class Att1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
