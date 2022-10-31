@@ -42,7 +42,22 @@ namespace api_csharp.Controllers
             await dbContext.Worklist.AddAsync(worklist);
             await dbContext.SaveChangesAsync();
             
-            return Ok(worklist);
+            return Ok(worklist.Id);
+        }
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<IActionResult> updateWorklist([FromRoute] int id, AddWorklistRequest updateWorklist)
+        {
+            var worklist = await dbContext.Worklist.FindAsync(id);
+            if (worklist != null)
+            {
+                worklist.Sala = updateWorklist.Sala;
+                worklist.Exame = updateWorklist.Exame;
+                await dbContext.SaveChangesAsync();
+                return Ok(worklist.Id);
+
+            }
+            return NotFound();
         }
     }
 }

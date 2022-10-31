@@ -38,15 +38,15 @@ namespace api_csharp.Controllers
         }
 
         [HttpPut]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> updateContato([FromRoute] Guid id, AddContatoRequest updateContato)
+        [Route("{id:int}")]
+        public async Task<IActionResult> updateContato([FromRoute] int id, AddContatoRequest updateContato)
         {
             var contato = await dbContext.Contatos.FindAsync(id);
             if(contato != null)
             {
                 contato.Endereco = updateContato.Endereco;
                 contato.Nome = updateContato.Nome;
-                contato.Telefone = updateContato.Endereco;
+                contato.Telefone = updateContato.Telefone;
                 await dbContext.SaveChangesAsync();
                 return Ok("Contato atualizado com sucesso!");
 
@@ -55,8 +55,8 @@ namespace api_csharp.Controllers
         }
 
         [HttpPost]
-        [Route("{id:guid}")]
-        public async Task<IActionResult> GetContato([FromRoute] Guid id)
+        [Route("{id:int}")]
+        public async Task<IActionResult> GetContato([FromRoute] int id)
         {
             var result = await dbContext.Contatos.FindAsync(id);
             return Ok(result);
