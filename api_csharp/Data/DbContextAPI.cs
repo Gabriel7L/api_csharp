@@ -13,5 +13,7 @@ namespace api_csharp.Data
 
         public DbSet<Worklist> Worklist { get; set; }
 
+        public DbSet<User> User { get; set; }
+
     }
 }

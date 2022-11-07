@@ -1,5 +1,6 @@
 ﻿using api_csharp.Data;
 using api_csharp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
@@ -10,6 +11,7 @@ namespace api_csharp.Controllers
 {
   [ApiController]
   [Route("api/contatos")]
+  [Authorize(Roles = "Admin")]
   public class ContatosController : Controller
   {
     private readonly DbContextAPI dbContext;

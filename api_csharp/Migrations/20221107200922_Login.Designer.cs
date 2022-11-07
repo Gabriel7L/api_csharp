@@ -12,8 +12,8 @@ using api_csharp.Data;
 namespace api_csharp.Migrations
 {
     [DbContext(typeof(DbContextAPI))]
-    [Migration("20221027204303_Att1")]
-    partial class Att1
+    [Migration("20221107200922_Login")]
+    partial class Login
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,36 @@ namespace api_csharp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("contato");
+                });
+
+            modelBuilder.Entity("api_csharp.Models.User", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text")
+                        .HasColumnName("email");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("text")
+                        .HasColumnName("nome");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text")
+                        .HasColumnName("password");
+
+                    b.Property<string>("Perfil")
+                        .HasColumnType("text")
+                        .HasColumnName("perfil");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("api_csharp.Models.Worklist", b =>
