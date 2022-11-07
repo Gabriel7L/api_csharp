@@ -20,14 +20,8 @@ namespace api_csharp.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetWorklist()
-        {
-            var conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;Database=teste;User Id=postgres;Password=mg#c0d3@Dsv;");
-            conn.Open();
-            var teste1 = new NpgsqlCommand("SELECT id,modelo,placa,nome_veiculo FROM huayteste", conn);
-            var result = await teste1.ExecuteReaderAsync();
-
-      
-            return Ok(result);
+        {      
+            return Ok(await dbContext.Worklist.ToListAsync());
 
         }
 
@@ -56,6 +50,17 @@ namespace api_csharp.Controllers
                 await dbContext.SaveChangesAsync();
                 return Ok(worklist.Id);
 
+            }
+            return NotFound();
+        }
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IActionResult> deleteWorklist([FromRoute] int id){
+            var worklist = await dbContext.Worklist.FindAsync(id);
+            if(worklist != null){
+                dbContext.Remove(worklist);
+                await dbContext.SaveChangesAsync();
+                return Ok("Deletado com sucesso");
             }
             return NotFound();
         }
