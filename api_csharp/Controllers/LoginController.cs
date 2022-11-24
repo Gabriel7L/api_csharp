@@ -17,14 +17,17 @@ namespace api_csharp.Controllers
         }
         [HttpPost]
         [Route("login")]
-        public async Task<ActionResult<dynamic>> Authenticate([FromBody] User model)
+        public async Task<ActionResult<dynamic>> Authenticate([FromBody] Login model)
         {
             var user = await dbContext.User.FirstOrDefaultAsync(x =>
-                x.Email == model.Email &&
-                x.Password == model.Password
+                x.Email == model.Email
             );
 
             if (user == null)
+                return BadRequest(new { message = "Usuário ou senha inválidos" });
+
+            bool checkPassword = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
+            if(!checkPassword)
                 return BadRequest(new { message = "Usuário ou senha inválidos" });
             var token = TokenService.GenerateToken(user);
 

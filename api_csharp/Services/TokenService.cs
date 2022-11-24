@@ -16,8 +16,8 @@ namespace api_csharp.Services
             {
                 Subject = new System.Security.Claims.ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, user.Email),
-                    new Claim(ClaimTypes.Role, user.Perfil),
+                    new Claim(ClaimTypes.Name, user.Email ?? ""),
+                    new Claim(ClaimTypes.Role, user.Perfil ?? ""),
                 }),
                 Expires = DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),

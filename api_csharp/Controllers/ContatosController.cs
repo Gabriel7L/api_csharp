@@ -11,7 +11,7 @@ namespace api_csharp.Controllers
 {
   [ApiController]
   [Route("api/contatos")]
-  [Authorize(Roles = "Admin")]
+  // [Authorize(Roles = "Admin")]
   public class ContatosController : Controller
   {
     private readonly DbContextAPI dbContext;
@@ -19,11 +19,10 @@ namespace api_csharp.Controllers
     {
       this.dbContext = dbcontext;
     }
-    [HttpGet]    
+    [HttpGet]
     public async Task<IActionResult> GetContatos()
     {
-      return Ok(await dbContext.Contatos.OrderBy(i=>i.Id).ToListAsync());
-
+      return Ok(await dbContext.Contatos.OrderBy(i => i.Id).ToListAsync());
     }
     [HttpPost]
     public async Task<IActionResult> AddContato(AddContatoRequest addRequest)
@@ -51,9 +50,8 @@ namespace api_csharp.Controllers
         contato.Telefone = updateContato.Telefone;
         await dbContext.SaveChangesAsync();
         var resposta = new Dictionary<string, string>();
-        resposta.Add("text","Contato atualizado com sucesso!");
+        resposta.Add("text", "Contato atualizado com sucesso!");
         return Ok(resposta);
-
       }
       return NotFound();
     }
