@@ -12,8 +12,8 @@ using api_csharp.Data;
 namespace api_csharp.Migrations
 {
     [DbContext(typeof(DbContextAPI))]
-    [Migration("20221107200922_Login")]
-    partial class Login
+    [Migration("20221124125736_MyFirstMigration")]
+    partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

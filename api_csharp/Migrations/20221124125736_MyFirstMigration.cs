@@ -5,7 +5,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace api_csharp.Migrations
 {
-    public partial class Login : Migration
+    public partial class MyFirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

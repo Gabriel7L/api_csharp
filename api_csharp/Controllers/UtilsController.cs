@@ -30,7 +30,7 @@ namespace api_csharp.Controllers
         public async Task<IActionResult> getCombos(getCombos comb)
         {
             var sql = "SELECT " + comb.id + "::text as id, " + comb.desc + "::text as desc FROM "+ comb.table + (comb.where != "" ? " WHERE" +comb.where : "");
-            var conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;Database=teste;User Id=postgres;Password=mg#c0d3@Dsv;");
+            var conn = new NpgsqlConnection("Server=127.0.0.1;Port=5432;Database=teste;User Id=postgres;Password=root;");
             conn.Open();
             var teste1 = new NpgsqlCommand(sql, conn);
             var result = await teste1.ExecuteReaderAsync();
