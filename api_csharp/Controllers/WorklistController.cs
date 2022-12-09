@@ -38,6 +38,7 @@ namespace api_csharp.Controllers
             
             return Ok(worklist.Id);
         }
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPut]
         [Route("{id:int}")]
         public async Task<IActionResult> updateWorklist([FromRoute] int id, AddWorklistRequest updateWorklist)
@@ -53,6 +54,7 @@ namespace api_csharp.Controllers
             }
             return NotFound();
         }
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpDelete]
         [Route("{id:int}")]
         public async Task<IActionResult> deleteWorklist([FromRoute] int id){

@@ -24,11 +24,11 @@ namespace api_csharp.Controllers
             );
 
             if (user == null)
-                return BadRequest(new { message = "Usuário ou senha inválidos" });
+                return Ok(BadRequest(new { message = "Usuário ou senha inválidos" }));
 
             bool checkPassword = BCrypt.Net.BCrypt.Verify(model.Password, user.Password);
             if(!checkPassword)
-                return BadRequest(new { message = "Usuário ou senha inválidos" });
+                return Ok(BadRequest(new { message = "Usuário ou senha inválidos" }));
             var token = TokenService.GenerateToken(user);
 
             user.Password = "";

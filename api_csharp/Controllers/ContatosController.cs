@@ -37,7 +37,7 @@ namespace api_csharp.Controllers
       await dbContext.SaveChangesAsync();
       return Ok(contato);
     }
-
+    [ApiExplorerSettings(IgnoreApi = true)]
     [HttpPut]
     [Route("{id:int}")]
     public async Task<IActionResult> updateContato([FromRoute] int id, AddContatoRequest updateContato)
@@ -64,6 +64,7 @@ namespace api_csharp.Controllers
       return Ok(result);
 
     }
+    [ApiExplorerSettings(IgnoreApi = true)]
     [HttpDelete]
     [Route("{id:int}")]
     public async Task<IActionResult> deleteContato([FromRoute] int id)

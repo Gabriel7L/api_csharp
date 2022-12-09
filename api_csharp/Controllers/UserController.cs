@@ -28,7 +28,7 @@ namespace api_csharp.Controllers
       await dbContext.SaveChangesAsync();
       return Ok(user.Id);
     }
-
+    [ApiExplorerSettings(IgnoreApi = true)]
     [HttpPut]
     [Route("{id:int}")]
     public async Task<IActionResult> UpdateUser(int id, User updateRequest)
