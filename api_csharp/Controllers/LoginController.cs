@@ -32,11 +32,11 @@ namespace api_csharp.Controllers
             var token = TokenService.GenerateToken(user);
 
             user.Password = "";
-            return new
+            return Ok(new
             {
                 user = user,
                 token = token,
-            };
+            });
         }
     }
 }
